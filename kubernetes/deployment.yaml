@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metagpt-sd-optimizer
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: metagpt-sd-optimizer
+  template:
+    metadata:
+      labels:
+        app: metagpt-sd-optimizer
+    spec:
+      containers:
+      - name: metagpt-sd-optimizer
+        image: metagpt-sd-optimizer:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelay: 15
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelay: 5
+          periodSeconds: 10
