@@ -1,0 +1,30 @@
+optimizer:
+  max_iterations: 1000
+  population_size: 50
+  mutation_rate: 0.1
+  crossover_rate: 0.5
+
+problem:
+  type: software_development
+  objective: minimize_cost
+  constraints:
+    - budget: 100000
+    - deadline: 30
+
+software_development:
+  tasks:
+    - name: requirements_gathering
+      duration: 5
+      cost: 5000
+    - name: design
+      duration: 10
+      cost: 10000
+    - name: implementation
+      duration: 15
+      cost: 20000
+    - name: testing
+      duration: 10
+      cost: 15000
+    - name: deployment
+      duration: 5
+      cost: 5000
