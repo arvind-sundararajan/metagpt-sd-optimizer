@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  metagpt-sd-optimizer:
+    build: .
+    environment:
+      - OPTIMIZER_MAX_ITERATIONS=1000
+      - OPTIMIZER_POPULATION_SIZE=50
+      - OPTIMIZER_MUTATION_RATE=0.1
+      - OPTIMIZER_CROSSOVER_RATE=0.5
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=metagpt-sd-optimizer
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
