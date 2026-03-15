@@ -1,0 +1,18 @@
+optimizer:
+  max_iterations: 1000
+  learning_rate: 0.01
+  exploration_rate: 0.1
+
+model:
+  type: lstm
+  layers: 2
+  units: 128
+
+training:
+  batch_size: 32
+  epochs: 10
+  validation_split: 0.2
+
+logging:
+  level: info
+  format: json
